@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Stream with Video.js</title>
+  <link href="https://cdn.jsdelivr.net/npm/video.js@7.10.2/dist/video-js.css" rel="stylesheet" />
+  <style>
+    html, body { height: 100%; margin: 0; background: #000; }
+
+    /* กล่องครอบ player เพื่อจัดตำแหน่งลายน้ำ */
+    #player-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* ตัว player กินเต็มกล่อง */
+    #player {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    /* ลายน้ำมุมขวาล่าง */
+    .watermark {
+      position: absolute;
+      bottom: 6px;
+      right: 9px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.35);
+      color: #FFFF00;
+      font-size: 16px;
+      line-height: 1;
+      z-index: 9999;
+      pointer-events: none; /* ไม่บังการคลิกปุ่มควบคุมของ video.js */
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+  <div id="player-container">
+    <video id="player" class="video-js vjs-default-skin" controls></video>
+    <div class="watermark">ผู้เฒ่าพเนจร</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/video.js@7.10.2/dist/video.js"></script>
+  <script>
+    var player = videojs('player', {
+      techOrder: ['html5'],
+      sources: [{
+        type: 'application/x-mpegURL',
+        src: 'https://wandering-oldman.github.io/intersport-football/cf-go4k-me-EPL-replay-1.m3u8'
+      }]
+    });
+  </script>
+</body>
+</html>
